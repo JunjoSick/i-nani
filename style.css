@@ -1,0 +1,52 @@
+html, body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s;
+    overflow: hidden;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+.project {
+    margin-bottom: 20px;
+}
+.dark-mode {
+    background-color: #333;
+    color: white;
+}
+.light-mode {
+    background-color: #fff;
+    color: black;
+}
+#mode-toggle {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+#clock {
+    position: fixed;
+    top: 10px;
+    right: 150px; 
+}
+.special-background {
+    background-image: url('https://raw.githubusercontent.com/JunjoSick/i-nani/main/images/snoopy.webp'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    min-height: 100%;
+    color: white; 
+
+    h1, h2, h3, h4, h5, h6, p, a, li, span, div {
+        color: white;
+    }
+
+    a, a:visited {
+        color: white;
+        text-decoration: underline; 
+    }
+}
