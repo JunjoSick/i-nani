@@ -5,7 +5,10 @@ function updateClock() {
     var second = now.getUTCSeconds();
     var formattedHour = hour < 10 ? '0' + hour : hour.toString();
     var formattedMinute = minute < 10 ? '0' + minute : minute.toString();
-    var formattedSecond = second < 10 ? '0' + second : second.toString(); 
+    var formattedSecond = second < 10 ? '0' + second : second.toString();
+    var filtri = "https://easylist-downloads.adblockplus.org/antiadblockfilters.txt \nhttps://raw.githubusercontent.com/bogachenko/fuckfuckadblock/master/fuckfuckadblock.txt \nhttps://raw.githubusercontent.com/gioxx/xfiles/master/filtri.txt \nhttps://big.oisd.nl";
+    
+    console.log(filtri);
 
     document.getElementById('clock').innerText = formattedHour + ':' + formattedMinute + ':' + formattedSecond;
 
