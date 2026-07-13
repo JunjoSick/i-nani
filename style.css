@@ -4,7 +4,7 @@ html, body {
     margin: 0;
     padding: 0;
     transition: background-color 0.3s;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 .container {
     width: 80%;
@@ -32,6 +32,50 @@ html, body {
     position: fixed;
     top: 10px;
     right: 150px; 
+}
+#gravity-toggle {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    padding: 0;
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+#gravity-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.6em;
+    opacity: 0;
+    transition: opacity 0.6s;
+    pointer-events: none;
+    z-index: 1000;
+}
+#gravity-message.visible {
+    opacity: 1;
+}
+.claude-sparkle {
+    position: fixed;
+    bottom: -40px;
+    color: #d97757;
+    pointer-events: none;
+    user-select: none;
+    z-index: 999;
+    animation: claude-rise linear forwards;
+}
+@keyframes claude-rise {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 .special-background {
     background-image: url('https://raw.githubusercontent.com/JunjoSick/i-nani/main/images/snoopy.webp'); 
