@@ -80,40 +80,36 @@ html, body {
 .kowalski-goat {
     position: fixed;
     left: 0;
-    bottom: 10px;
-    line-height: 1;
+    bottom: 12px;
+    z-index: 999;
     pointer-events: none;
     user-select: none;
-    z-index: 999;
-    animation: kowalski-hop linear both;
+    animation: kowalski-cross linear both;
 }
-@keyframes kowalski-hop {
+.kowalski-goat-body {
+    display: block;
+    line-height: 1;
+    animation: kowalski-bounce 0.95s infinite;
+}
+@keyframes kowalski-cross {
+    from {
+        transform: translateX(-120%);
+    }
+    to {
+        transform: translateX(calc(100vw + 5rem));
+    }
+}
+@keyframes kowalski-bounce {
     0% {
-        transform: translate(-2.5em, 0);
+        transform: translateY(0);
+        animation-timing-function: cubic-bezier(0.25, 0.8, 0.4, 1);
     }
-    12% {
-        transform: translate(8vw, -26px);
-    }
-    24% {
-        transform: translate(18vw, 0);
-    }
-    36% {
-        transform: translate(30vw, -32px);
-    }
-    48% {
-        transform: translate(42vw, 0);
-    }
-    60% {
-        transform: translate(54vw, -22px);
-    }
-    72% {
-        transform: translate(66vw, 0);
-    }
-    84% {
-        transform: translate(78vw, -28px);
+    46% {
+        transform: translateY(-3.4rem);
+        animation-timing-function: cubic-bezier(0.55, 0, 0.8, 0.35);
     }
     100% {
-        transform: translate(108vw, 0);
+        transform: translateY(0);
     }
 }
 .special-background {

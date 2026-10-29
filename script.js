@@ -72,20 +72,20 @@ function getPyongyangTime() {
     };
 }
 
-function setTemporaryHeading(message) {
+function setTemporaryHeading(message, duration) {
     window.clearTimeout(headingTimer);
     heading.innerText = message;
     headingTimer = window.setTimeout(function() {
         heading.innerText = originalHeading;
-    }, 4000);
+    }, duration || 4000);
 }
 
-function setTemporaryTitle(message) {
+function setTemporaryTitle(message, duration) {
     window.clearTimeout(titleTimer);
     document.title = message;
     titleTimer = window.setTimeout(function() {
         document.title = originalTitle;
-    }, 4000);
+    }, duration || 4000);
 }
 
 function spawnSparkle() {
@@ -117,35 +117,53 @@ function summonClaude() {
     }
 }
 
-function spawnGoat(index) {
+function spawnGoat(index, duration, delay) {
     var goat = document.createElement('span');
-    var duration = 2.8 + Math.random() * 0.5;
-    var delay = index * 0.22;
+    var body = document.createElement('span');
+    var lifetime = (duration + delay) * 1000 + 200;
+
+    body.className = 'kowalski-goat-body';
+    body.innerText = '🐐';
+    body.style.fontSize = (3.25 + (index % 4) * 0.25) + 'rem';
+    body.style.animationDuration = (0.9 + index * 0.06) + 's';
 
     goat.className = 'kowalski-goat';
-    goat.innerText = '🐐';
-    goat.style.fontSize = (16 + Math.random() * 8) + 'px';
-    goat.style.bottom = (6 + (index % 3) * 10) + 'px';
+    goat.style.bottom = (12 + (index % 2) * 16) + 'px';
+    goat.style.zIndex = String(999 + index);
     goat.style.animationDuration = duration + 's';
     goat.style.animationDelay = delay + 's';
+    goat.appendChild(body);
     document.body.appendChild(goat);
 
     window.setTimeout(function() {
         goat.remove();
-    }, (duration + delay) * 1000 + 200);
+    }, lifetime);
+
+    return lifetime;
 }
 
 function summonKowalski() {
-    setTemporaryHeading('Kowalski, analysis: abbiamo tutti perso.');
-    setTemporaryTitle('🐐 analisi in corso');
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var paradeMs = 4000;
+    var durations = [6.2, 5.8, 6.6, 6];
+    var delayStep = 0.9;
+    var i;
+    var lifetime;
 
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return;
+    if (!reduced) {
+        for (i = 0; i < durations.length; i++) {
+            lifetime = spawnGoat(i, durations[i], i * delayStep);
+
+            if (lifetime > paradeMs) {
+                paradeMs = lifetime;
+            }
+        }
+
+        paradeMs += 250;
     }
 
-    for (var i = 0; i < 4; i++) {
-        spawnGoat(i);
-    }
+    setTemporaryHeading('Kowalski, analysis: abbiamo tutti perso.', paradeMs);
+    setTemporaryTitle('🐐 analisi in corso', paradeMs);
 }
 
 function unlockSnoopy() {
