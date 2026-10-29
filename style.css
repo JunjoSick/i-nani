@@ -93,10 +93,10 @@ html, body {
 }
 @keyframes kowalski-cross {
     from {
-        transform: translateX(-120%);
+        transform: translateX(calc(100vw + 5rem));
     }
     to {
-        transform: translateX(calc(100vw + 5rem));
+        transform: translateX(-120%);
     }
 }
 @keyframes kowalski-bounce {
