@@ -21,7 +21,7 @@ gravityMessage.innerText = 'visto? abbiamo tutti perso.';
 document.body.appendChild(gravityMessage);
 
 console.log(filtri);
-console.log("psst: try the clock, the old code, or type dwarf / juche / bookforge / claude. the 'perdi tutto' button does exactly what it promises.");
+console.log("psst: try the clock, the old code, or type dwarf / juche / bookforge / claude / kowalski. the 'perdi tutto' button does exactly what it promises.");
 console.log("(p.s. by reading the title, you just lost the game. so did I. abbiamo tutti perso.)");
 
 try {
@@ -114,6 +114,37 @@ function summonClaude() {
 
     for (var i = 0; i < 14; i++) {
         spawnSparkle();
+    }
+}
+
+function spawnGoat(index) {
+    var goat = document.createElement('span');
+    var duration = 2.8 + Math.random() * 0.5;
+    var delay = index * 0.22;
+
+    goat.className = 'kowalski-goat';
+    goat.innerText = '🐐';
+    goat.style.fontSize = (16 + Math.random() * 8) + 'px';
+    goat.style.bottom = (6 + (index % 3) * 10) + 'px';
+    goat.style.animationDuration = duration + 's';
+    goat.style.animationDelay = delay + 's';
+    document.body.appendChild(goat);
+
+    window.setTimeout(function() {
+        goat.remove();
+    }, (duration + delay) * 1000 + 200);
+}
+
+function summonKowalski() {
+    setTemporaryHeading('Kowalski, analysis: abbiamo tutti perso.');
+    setTemporaryTitle('🐐 analisi in corso');
+
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    for (var i = 0; i < 4; i++) {
+        spawnGoat(i);
     }
 }
 
@@ -342,6 +373,10 @@ document.addEventListener('keydown', function(event) {
 
         if (typedBuffer.endsWith('claude')) {
             summonClaude();
+        }
+
+        if (typedBuffer.endsWith('kowalski')) {
+            summonKowalski();
         }
     }
 });

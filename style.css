@@ -77,6 +77,45 @@ html, body {
         opacity: 0;
     }
 }
+.kowalski-goat {
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 999;
+    animation: kowalski-hop linear both;
+}
+@keyframes kowalski-hop {
+    0% {
+        transform: translate(-2.5em, 0);
+    }
+    12% {
+        transform: translate(8vw, -26px);
+    }
+    24% {
+        transform: translate(18vw, 0);
+    }
+    36% {
+        transform: translate(30vw, -32px);
+    }
+    48% {
+        transform: translate(42vw, 0);
+    }
+    60% {
+        transform: translate(54vw, -22px);
+    }
+    72% {
+        transform: translate(66vw, 0);
+    }
+    84% {
+        transform: translate(78vw, -28px);
+    }
+    100% {
+        transform: translate(108vw, 0);
+    }
+}
 .special-background {
     background-image: url('https://raw.githubusercontent.com/JunjoSick/i-nani/main/images/snoopy.webp'); 
     background-size: cover; 
